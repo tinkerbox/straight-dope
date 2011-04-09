@@ -6,11 +6,11 @@ Gem::Specification.new do |s|
   s.name        = "straight_dope"
   s.version     = StraightDope::VERSION
   s.platform    = Gem::Platform::RUBY
-  s.authors     = ["Jaryl Sim"]
-  s.email       = ["jaryl@tinkerbox.com.sg"]
+  s.authors     = "Jaryl Sim"
+  s.email       = "jaryl@tinkerbox.com.sg"
   s.homepage    = "http://www.tinkerbox.com.sg"
-  s.summary     = %q{Convert page URLs to media URLs}
-  s.description = %q{Straight Dope gets the actual URL for media content that is usually hidden behind a page.}
+  s.summary     = "Convert page URLs to media URLs"
+  s.description = "Straight Dope gets the actual URL for media content that is usually hidden behind a page."
 
   s.rubyforge_project = "straight_dope"
 
