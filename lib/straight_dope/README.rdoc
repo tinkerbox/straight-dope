@@ -1,0 +1,15 @@
+== Straight Dope
+
+StraightDope is a gem for getting the URLs of media content from sites such as yfrog and Twitpic.
+
+== Getting Started
+
+In <b>Rails 3</b>, add this to your Gemfile and run the +bundle+ command.
+
+  gem "straight_dope"
+
+To use it, simply call extract_media on a string.
+
+  StraightDope.extract_media("put your urls here")
+
+StraightDope will return you an array of URL strings, that you can use directly in your HTML tags.
