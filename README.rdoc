@@ -13,3 +13,11 @@ To use it, simply call extract_media on a string.
   StraightDope.extract_media("put your urls here")
 
 StraightDope will return you an array of URL strings, that you can use directly in your HTML tags.
+
+
+== Reference
+
+Straight Dope was inspired from these blog posts.
+
+http://jasonneylon.wordpress.com/2011/02/01/twitter-picture-previews-with-ruby/
+http://railstips.org/blog/archives/2009/03/04/following-redirects-with-nethttp/
