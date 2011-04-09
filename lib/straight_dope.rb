@@ -1,0 +1,3 @@
+module StraightDope
+  # Your code goes here...
+end
