@@ -26,6 +26,18 @@ module StraightDope
     end
   end
   
+  class TwitGooAdapter
+    def self.match?(url)
+      !(url =~ /twitgoo\.com/).nil?
+    end
+    
+    def self.extract(url)
+      uri = URI.parse(url)
+      id = uri.path
+      "http://twitgoo.com/show/img#{uri.path}"
+    end
+  end
+  
   def self.extract_media(content)
     urls = URI.extract content
     media_urls = []
