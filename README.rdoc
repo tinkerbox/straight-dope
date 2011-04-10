@@ -1,6 +1,17 @@
 == Straight Dope
 
-StraightDope is a gem for getting the URLs of media content from sites such as yfrog and Twitpic.
+StraightDope is a gem for getting the URLs of media content from sites such as yfrog and Twitpic. Currently supported services:
+
+* yFrog
+* TwitPic
+
+Coming soon:
+
+* Lockerz
+* Mobypicture
+* Twitgoo
+* Posterous
+* img.ly
 
 == Getting Started
 

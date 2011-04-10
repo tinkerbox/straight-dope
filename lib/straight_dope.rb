@@ -10,7 +10,19 @@ module StraightDope
     def self.extract(url)
       uri = URI.parse(url)
       id = uri.path
-      "http://yfrog.com/#{uri.path}:medium"
+      "http://yfrog.com#{uri.path}:medium"
+    end
+  end
+  
+  class TwitPicAdapter
+    def self.match?(url)
+      !(url =~ /twitpic\.com/).nil?
+    end
+    
+    def self.extract(url)
+      uri = URI.parse(url)
+      id = uri.path
+      "http://twitpic.com/show/full#{uri.path}"
     end
   end
   
@@ -30,7 +42,7 @@ module StraightDope
         limit -= 1
       end
       
-      adapters = [YfrogAdapter]
+      adapters = [YfrogAdapter, TwitPicAdapter]
       adapters.each do |adapter|
         if adapter.match? u
           media_urls << adapter.extract(u)
