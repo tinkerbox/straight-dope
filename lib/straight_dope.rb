@@ -38,6 +38,41 @@ module StraightDope
     end
   end
   
+  class ImglyAdapter
+    def self.match?(url)
+      !(url =~ /img\.ly/).nil?
+    end
+    
+    def self.extract(url)
+      uri = URI.parse(url)
+      id = uri.path
+      "http://img.ly/show/full#{uri.path}"
+    end
+  end
+  
+  class PlixiAdapter
+    def self.match?(url)
+      !(url =~ /plixi\.com/).nil?
+    end
+    
+    def self.extract(url)
+      uri = URI.parse(url)
+      "http://api.plixi.com/api/tpapi.svc/imagefromurl?size=large&url=#{url}"
+    end
+  end
+  
+  class MobyAdapter
+    def self.match?(url)
+      !(url =~ /moby\.to/).nil?
+    end
+    
+    def self.extract(url)
+      uri = URI.parse(url)
+      id = uri.path
+      "http://moby.to/#{id}:full"
+    end
+  end
+  
   def self.extract_media(content)
     urls = URI.extract content
     media_urls = []
@@ -54,13 +89,16 @@ module StraightDope
         limit -= 1
       end
       
-      adapters = [YfrogAdapter, TwitPicAdapter]
-      adapters.each do |adapter|
-        if adapter.match? u
-          media_urls << adapter.extract(u)
-          break
+      unless response.kind_of?(Net::HTTPRedirection)
+        adapters = [YfrogAdapter, TwitPicAdapter, TwitGooAdapter, ImglyAdapter, PlixiAdapter, MobyAdapter]
+        adapters.each do |adapter|
+          if adapter.match? u
+            media_urls << adapter.extract(u)
+            break
+          end
         end
       end
+      
     end
     
     media_urls

@@ -4,18 +4,18 @@ StraightDope is a gem for getting the URLs of media content from sites such as y
 
 * yfrog
 * TwitPic
+* Lockerz
+* Twitgoo
+* img.ly
+* Mobypicture
 
 Coming soon:
 
-* Lockerz
-* Mobypicture
-* Twitgoo
 * Posterous
-* img.ly
 
 == Getting Started
 
-In <b>Rails 3</b>, add this to your Gemfile and run the +bundle+ command.
+Add this to your Gemfile and run the +bundle+ command.
 
   gem "straight_dope"
 
@@ -25,6 +25,12 @@ To use it, simply call extract_media on a string.
 
 StraightDope will return you an array of URL strings, that you can use directly in your HTML tags.
 
+== Future Enhancements
+
+* oEmbed support
+* API keys
+* Video support
+* Different sizes
 
 == Reference
 
