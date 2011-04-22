@@ -76,36 +76,35 @@ module StraightDope
   def self.extract_media(content)
     urls = URI.extract content
     media_urls = []
-    
+
     urls.each do |u|
-      response = Net::HTTP.get_response(URI.parse(u))
-      
-      limit = 3
-      
-      while limit > 0 && response.kind_of?(Net::HTTPRedirection)
-        handled = false
-        
-        adapters = [YfrogAdapter, TwitPicAdapter, TwitGooAdapter, ImglyAdapter, PlixiAdapter, MobyAdapter]
-        adapters.each do |adapter|
-          if adapter.match? u
-            media_urls << adapter.extract(u)
-            handled = true
-            break
-          end
+      url = process_redirects(u)
+      adapters = [YfrogAdapter, TwitPicAdapter, TwitGooAdapter, ImglyAdapter, PlixiAdapter, MobyAdapter]
+      adapters.each do |adapter|
+        if adapter.match? url
+          media_urls << adapter.extract(url)
+          break
         end
-        
-        break if handled
-        
-        u = response['location']
-        response = Net::HTTP.get_response(URI.parse(u))
-        
-        limit -= 1
-        
       end
-      
     end
     
     media_urls
+  end
+
+  def self.process_redirects(u)
+    response = Net::HTTP.get_response(URI.parse(u))
+    return u unless response.kind_of?(Net::HTTPRedirection)
+
+    limit = 3
+
+      while limit > 0 && response.kind_of?(Net::HTTPRedirection)
+
+        u = response['location']
+        response = Net::HTTP.get_response(URI.parse(u))
+
+        limit -= 1
+      end
+    u
   end
   
 end
